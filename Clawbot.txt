@@ -1,0 +1,76 @@
+// Motor Driver 1 (Front Motors)
+#define IN1 22  // Front-left motor IN1
+#define IN2 23  // Front-left motor IN2
+#define IN3 24  // Front-right motor IN1
+#define IN4 25  // Front-right motor IN2
+
+// Motor Driver 2 (Rear Motors)
+#define IN5 26  // Rear-left motor IN1
+#define IN6 27  // Rear-left motor IN2
+#define IN7 28  // Rear-right motor IN1
+#define IN8 29  // Rear-right motor IN2
+
+char command;
+
+void setup() {
+  // Set all motor pins as OUTPUT
+  for (int pin = 22; pin <= 29; pin++) {
+    pinMode(pin, OUTPUT);
+  }
+
+  // Begin Bluetooth serial communication (TX1/RX1)
+  Serial1.begin(9600);
+}
+
+void loop() {
+  if (Serial1.available()) {
+    command = Serial1.read();
+
+    switch (command) {
+      case 'F': forward(); break;   // Forward
+      case 'B': backward(); break;  // Backward
+      case 'L': turnLeft(); break;  // Turn Left
+      case 'R': turnRight(); break; // Turn Right
+      case 'S': stopMotors(); break;// Stop
+    }
+  }
+}
+
+void forward() {
+  // All motors forward
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+  digitalWrite(IN5, HIGH); digitalWrite(IN6, LOW);
+  digitalWrite(IN7, HIGH); digitalWrite(IN8, LOW);
+}
+
+void backward() {
+  // All motors backward
+  digitalWrite(IN1, LOW); digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW); digitalWrite(IN4, HIGH);
+  digitalWrite(IN5, LOW); digitalWrite(IN6, HIGH);
+  digitalWrite(IN7, LOW); digitalWrite(IN8, HIGH);
+}
+
+void turnLeft() {
+  // Left motors backward, right motors forward
+  digitalWrite(IN1, LOW); digitalWrite(IN2, HIGH);  // FL
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);  // FR
+  digitalWrite(IN5, LOW); digitalWrite(IN6, HIGH);  // RL
+  digitalWrite(IN7, HIGH); digitalWrite(IN8, LOW);  // RR
+}
+
+void turnRight() {
+  // Left motors forward, right motors backward
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);  // FL
+  digitalWrite(IN3, LOW); digitalWrite(IN4, HIGH);  // FR
+  digitalWrite(IN5, HIGH); digitalWrite(IN6, LOW);  // RL
+  digitalWrite(IN7, LOW); digitalWrite(IN8, HIGH);  // RR
+}
+
+void stopMotors() {
+  // Stop all motors
+  for (int pin = 22; pin <= 29; pin++) {
+    digitalWrite(pin, LOW);
+  }
+}
