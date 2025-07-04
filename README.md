@@ -28,15 +28,6 @@ Clawbot is a robotic claw system designed to pick and place small objects using 
 - USB Cable to upload code
 - Required hardware components connected properly
 
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/clawbot.git
-Open the .ino file in Arduino IDE.
-
-Connect your board and upload the code.
 
 🎯 Applications
 Object sorting and placement
@@ -46,8 +37,3 @@ Robotic arm training kits
 Mini automation tasks
 
 Introductory robotics projects
-
-👥 Team Members
-Anand Arya (Mechanical + Circuit Integration)
-
-[Other team members here]
