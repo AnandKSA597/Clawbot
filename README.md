@@ -2,9 +2,6 @@
 
 Clawbot is a robotic claw system designed to pick and place small objects using a programmable robotic arm. The project focuses on motion control, gripping mechanics, and precise actuation for real-world automation tasks. Ideal for learning robotics, embedded systems, and control algorithms.
 
-## 📸 Project Preview
-
-*(Add a GIF or image here of your Clawbot in action)*
 
 ## 🛠️ Features
 
